@@ -6,7 +6,7 @@
 curl -L -o coursier https://git.io/coursier-cli
 chmod +x coursier
 
-./coursier launch --fork almond:0.13.2 --scala 3.1.1 -- --install
+./coursier launch --fork almond:0.13.1 --scala 3.1.1 -- --install
 
 
 jupyter labextension install --minimize=False \
