@@ -2,19 +2,14 @@
 
 
 # Install coursier
+
 curl -L -o coursier https://git.io/coursier-cli
 chmod +x coursier
 
-SCALA_VERSION=2.13.1 ALMOND_VERSION=0.9.0
-./coursier bootstrap \
-  -r jitpack \
-  -i user -I user:sh.almond:scala-kernel-api_$SCALA_VERSION:$ALMOND_VERSION \
-  sh.almond:scala-kernel_$SCALA_VERSION:$ALMOND_VERSION \
-  --sources --default=true \
-  -o ./almond
-./almond --install --id scala213 --display-name "Scala (2.13)" \
-  --command "java -XX:MaxRAMPercentage=80.0 -jar almond --id scala213 --display-name 'Scala (2.13)'" \
-  --copy-launcher \
-  --metabrowse
-rm -f almond
+./coursier launch --fork almond:0.13.2 --scala 3.1.0 -- --install
 
+
+jupyter labextension install --minimize=False \
+  jupyterlab-plotly \
+  @almond-sh/scalafmt \
+  @almond-sh/jupyterlab_variableinspector
